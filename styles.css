@@ -1,0 +1,40 @@
+ul li {
+    list-style-type: none;
+}
+
+.complete {
+   text-decoration: line-through red;
+}
+
+h1 {
+    font-family:'Courier New', Courier, monospace;
+}
+
+#deletebutton .fa {
+    padding-right: 10px;
+}
+
+#background {
+    background-image: url(/Images/beach.jpg);
+    background-position:top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-clip: border-box;
+    width: 100vw;
+    height: 100vh;
+    opacity: .5;
+    position: absolute;
+    top:0;
+    z-index: -1;
+
+}
+
+#main {
+    position:fixed;
+    padding: 20px;   
+
+}
+
+#inner {
+    padding: 20px;
+}
