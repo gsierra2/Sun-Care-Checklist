@@ -1,62 +1,50 @@
-
 let skinCareItems = [
-    {name: 'Broad Spectrum Sunscreen',completed: false},
-    {name: 'Sunglasses',completed: false},
-    {name: 'Wide Brimmed Hat',completed: false},
-    {name: 'Water',completed: false}
-]
+  { name: 'Broad Spectrum Sunscreen', completed: false },
+  { name: 'Sunglasses', completed: false },
+  { name: 'Wide Brimmed Hat', completed: false },
+  { name: 'Water', completed: false },
+];
 
-function getListItem(itemData, index) { 
-    
-    const completedClass = (itemData.completed) ? 'complete' : 'incomplete'
-    return `<li class="${completedClass}" id="${index}">${itemData.name}</li>`
+function getListItem(itemData, index) {
+  const completedClass = (itemData.completed) ? 'complete' : 'incomplete';
+  return `<li class="${completedClass}" id="${index}">${itemData.name}</li>`;
 }
 
-function updateList () {
-   
-    let listItems = skinCareItems.map(getListItem)
+function updateList() {
+  const listItems = skinCareItems.map(getListItem);
 
-    $('ul#skinCareItems').html(listItems)
+  $('ul#skinCareItems').html(listItems);
 }
 
-$('button#addbutton').on('click', function() {
-   
-    let valueItem = $('input#Add_Item').val()
+$('button#addbutton').on('click', () => {
+  const valueItem = $('input#Add_Item').val();
 
-    let newItem = {
-        name: valueItem,
-        completed:false
-    };
+  const newItem = {
+    name: valueItem,
+    completed: false,
+  };
 
-    skinCareItems.push(newItem)
-    
-   updateList();
+  skinCareItems.push(newItem);
+
+  updateList();
 });
 
-$('button#deletebutton').on('click', function() {
-    
-    const incompleteSkinCareItems = skinCareItems.filter(function (item){
-        
-        return !item.completed
+$('button#deletebutton').on('click', () => {
+  const incompleteSkinCareItems = skinCareItems.filter((item) => !item.completed);
 
-    });
-    
-    skinCareItems = incompleteSkinCareItems;
+  skinCareItems = incompleteSkinCareItems;
 
-    updateList();
+  updateList();
 });
 
+$('ul#skinCareItems').on('click', (event) => {
+  const liClicked = event.target.id;
 
-$('ul#skinCareItems').on('click', function(event){
-   
-    const liClicked = event.target.id
+  const previousCompleteState = skinCareItems[liClicked].completed;
 
-    const previousCompleteState = skinCareItems[liClicked].completed;
+  skinCareItems[liClicked].completed = !previousCompleteState;
 
-
-    skinCareItems[liClicked].completed = !previousCompleteState;
-    
-    updateList();
-})
+  updateList();
+});
 
 updateList();
